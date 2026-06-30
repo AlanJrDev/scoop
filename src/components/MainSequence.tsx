@@ -145,6 +145,7 @@ export function MainSequence() {
   const greenRef = useRef<HTMLDivElement>(null);
   const blueRef = useRef<HTMLDivElement>(null);
   const snowflakesRef = useRef<HTMLDivElement>(null);
+  const canvasWrapRef = useRef<HTMLDivElement>(null);
 
   const progressRef = useRef<(p: number) => void>();
 
@@ -166,12 +167,16 @@ export function MainSequence() {
       const green = greenRef.current;
       const blue = blueRef.current;
       const snowflakes = snowflakesRef.current;
-      if (!hero || !green || !blue || !snowflakes) return;
+      const canvasWrap = canvasWrapRef.current;
+      if (!hero || !green || !blue || !snowflakes || !canvasWrap) return;
 
-      // Hide hero and green at the end; blue stays visible (sem saída)
+      // Hide tudo no fim — container height 0, sem gap
       if (p >= 1) {
         gsap.set(hero, { opacity: 0, visibility: 'hidden' });
-        gsap.set(green, { opacity: 0, xPercent: -15 });
+        gsap.set(green, { opacity: 0, xPercent: -15, visibility: 'hidden' });
+        gsap.set(blue, { opacity: 0, xPercent: -110, visibility: 'hidden' });
+        gsap.set(snowflakes, { opacity: 0, visibility: 'hidden' });
+        gsap.set(canvasWrap, { opacity: 0, visibility: 'hidden' });
         return;
       }
 
@@ -225,15 +230,16 @@ export function MainSequence() {
     <div ref={containerRef} className="relative z-0">
       <Header />
 
-      <ScrollCanvas
-        frameCount={414}
-        framePath={getFramePath}
-        scrollTriggerStart="top top"
-        scrollTriggerEnd="+=1350"
-        canvasHeight="100vh"
-        scrub={true}
-        onProgress={progressRef.current}
-      >
+      <div ref={canvasWrapRef}>
+        <ScrollCanvas
+          frameCount={414}
+          framePath={getFramePath}
+          scrollTriggerStart="top top"
+          scrollTriggerEnd="+=1350"
+          canvasHeight="0"
+          scrub={true}
+          onProgress={progressRef.current}
+        >
         {/* Snowflakes */}
         <div ref={snowflakesRef} className="absolute inset-0 z-0 pointer-events-none" style={{ opacity: 0 }}>
           <Snowflakes />
@@ -302,6 +308,7 @@ export function MainSequence() {
           </div>
         </div>
       </ScrollCanvas>
+      </div>
     </div>
   );
 }
