@@ -1,0 +1,19 @@
+:root {
+  /* Cores */
+  --color-bg-neutral: #FAFAFA;
+  --color-pink-bubblegum: #F6B8C6;
+  --color-chocolate: #4A2B18;
+  --color-accent-cyan: #5FC9D6;
+  --color-accent-mustard: #E8B33D;
+  --color-pastel-green: #B5EAD7;
+  --color-glass-bg: rgba(255, 255, 255, 0.55);
+  --color-glass-border: rgba(255, 255, 255, 0.35);
+
+  /* Tipografia */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  /* Timing de animação */
+  --ease-default: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-hover: 0.3s;
+}

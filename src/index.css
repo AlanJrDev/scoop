@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Syne:wght@700;800&display=swap');
+@import './styles/tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg-neutral text-chocolate font-body antialiased selection:bg-pink-bubblegum selection:text-chocolate;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-extrabold;
+  }
+}
+
+/* Custom scrollbar for horizontal scrolling area */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-pink-bubblegum); 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-chocolate); 
+}
