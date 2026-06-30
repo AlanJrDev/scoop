@@ -170,12 +170,12 @@ export function MainSequence() {
       const canvasWrap = canvasWrapRef.current;
       if (!hero || !green || !blue || !snowflakes || !canvasWrap) return;
 
-      // Hide tudo no fim — container height 0, sem gap
+      // End: hide everything so 0-height container doesn't overflow over Classics
       if (p >= 1) {
         gsap.set(hero, { opacity: 0, visibility: 'hidden' });
         gsap.set(green, { opacity: 0, xPercent: -15, visibility: 'hidden' });
         gsap.set(blue, { opacity: 0, xPercent: -110, visibility: 'hidden' });
-        gsap.set(snowflakes, { opacity: 0, visibility: 'hidden' });
+        gsap.set(snowflakes, { opacity: 0 });
         gsap.set(canvasWrap, { opacity: 0, visibility: 'hidden' });
         return;
       }
